@@ -1,27 +1,26 @@
 <?php
 
 
-class qs_deck{
+    class qs_main{
 
-    function get_cards(){
-        return "SELECT * FROM tcards.cards";
+        //GETS
+        function get_menu_items(){
+            return "SELECT * FROM menu m WHERE m.active = 1 ORDER BY m.order ASC";
+        }
+
+        function get_notifications(){
+            return "SELECT 
+                        COUNT(IF(c.state = 1, NULL, 1))                         AS fuera_tarjetas,
+                        COUNT(IF(TO_SECONDS(c.fecha_salida) > 28800 && c.state = 0, 1, NULL))  AS vencidas_tarjetas,
+                        COUNT(IF(c.state = 1, NULL, 1)) + COUNT(IF(TO_SECONDS(c.fecha_salida) > 28800 && c.state = 0, 1, NULL))  AS total_warnings
+                    FROM
+                        cards c";
+        }
+
+        //INSERTS
+
+        //UPDATES
+
+        //DELETES
     }
 
-
-    function get_cards_count(){
-        return "SELECT
-                    COUNT(*)                                                AS total_tarjetas,
-                    COUNT(IF(c.state = 1, 1, NULL))                         AS dentro_tarjetas,
-                    COUNT(IF(c.state = 1, NULL, 1))                         AS fuera_tarjetas,
-                    COUNT(IF(TO_SECONDS(c.fecha_salida) > 28800 && c.state = 0, 1, NULL))  AS vencidas_tarjetas
-                FROM
-                    tcards.cards c";
-    }
-
-    function get_menu_items(){
-        return "
-            SELECT * FROM menu WHERE active = 1;
-        ";
-    }
-
-}

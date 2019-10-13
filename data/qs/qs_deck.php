@@ -1,12 +1,30 @@
 <?php
 
 
-class qs_main{
+class qs_deck{
 
+    //GETS
     function get_cards(){
-        return "SELECT * FROM tcards.cards";
+        return "
+            SELECT
+                c.id as card_id,
+                c.numero,
+                c.nombre as card_name,
+                i.nombre as idioma,
+                i.id as idioma_id,
+                c.folder_id,
+                c.state,
+                c.fecha_salida,
+                c.fecha_entrada,
+                c.active as c_active
+            FROM
+                 cards c
+                 JOIN idiomas i ON c.idioma_id = i.id
+            WHERE
+                (c.id = :id OR :id = 0)
+            ORDER BY C.fecha_salida DESC
+        ";
     }
-
 
     function get_cards_count(){
         return "SELECT
@@ -18,10 +36,10 @@ class qs_main{
                     tcards.cards c";
     }
 
-    function get_menu_items(){
-        return "
-            SELECT * FROM menu WHERE active = 1;
-        ";
-    }
+    //INSERTS
+
+    //UPDATES
+
+    //DELETES
 
 }

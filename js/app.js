@@ -18,3 +18,18 @@ function post_request(urlFile, comp, arrayData, Callback, not_load = true){
         }
     });
 }
+
+
+function search_cards(id, comp){
+    let obj = {
+        case: 'get_cards',
+        id: id
+    };
+
+    post_request('./controllers/index_control.php',comp, obj);
+}
+
+//Checks that all cards are in by an especified hour
+function alarm_check(){
+
+}

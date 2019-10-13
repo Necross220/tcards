@@ -28,7 +28,7 @@ class utilities{
         if($autoClose === true)
             echo "<script>setTimeout(function(){
                 $('.auto-alert').hide()
-            }, 40000)</script>";
+            }, 30000)</script>";
 
         return $alert;
     }

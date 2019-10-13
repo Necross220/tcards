@@ -2,10 +2,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Page Header
-                <small>Optional description</small>
+            <h1 id="page_title">
+                Dashboard
             </h1>
+            <small id="page_desc">Reporterria, despacho </small>
+
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                 <li class="active">Here</li>
@@ -21,15 +22,16 @@
                     <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3 id="total_tarjetas">150</h3>
+                            <h3 id="total_tarjetas">-
+                            </h3>
 
                             <p>Total tarjetas</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-file"></i>
+                            <i class="fa  fa-clipboard"></i>
                         </div>
                         <a href="#" class="small-box-footer">
-                            More info <i class="fa fa-arrow-circle-right"></i>
+                            Más información <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
@@ -38,15 +40,15 @@
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
+                            <h3 id="dentro_tarjetas">-</h3>
 
-                            <p>Bounce Rate</p>
+                            <p>Tarjetas en caja</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="fa fa-archive"></i>
                         </div>
                         <a href="#" class="small-box-footer">
-                            More info <i class="fa fa-arrow-circle-right"></i>
+                            Más información <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
@@ -55,15 +57,15 @@
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3 id="fuera_tarjetas">-</h3>
 
-                            <p>User Registrations</p>
+                            <p>Tarjetas fuera</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <i class="fa fa-question-circle"></i>
                         </div>
                         <a href="#" class="small-box-footer">
-                            More info <i class="fa fa-arrow-circle-right"></i>
+                            Más información <i class="fa fa-question-circle"></i>
                         </a>
                     </div>
                 </div>
@@ -72,15 +74,15 @@
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3 id="vencidas_tarjetas">-</h3>
 
-                            <p>Unique Visitors</p>
+                            <p>Tarjetas vencidas</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="fa fa-exclamation-circle"></i>
                         </div>
                         <a href="#" class="small-box-footer">
-                            More info <i class="fa fa-arrow-circle-right"></i>
+                            Más información <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
@@ -89,14 +91,11 @@
             <!-- /.row -->
 
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control">
+                <input id="searchbar" type="number" class="form-control">
                 <span class="input-group-btn">
-                      <button type="button" class="btn btn-info btn-flat">Buscar</button>
+                      <button type="button" id="search_cards" class="btn btn-info btn-flat">Buscar</button>
                     </span>
             </div>
-
-            <input type="checkbox" checked data-toggle="toggle">
-            <button id="satest">Sweet alert</button>
 
             <div id="cardsMainWrap"></div>
         </section>
@@ -107,34 +106,23 @@
 
         $(document).ready(function(){
 
-            post_request('./controllers/index_control.php','#cardsMainWrap', {case: 'get_cards'}, function () {
-                $('#cardsMain').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy',
-                        'excel',
-                        'csv',
-                        'pdf',
-                        'print'
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-                    }
-                });
-            });
+            post_request('./controllers/index_control.php','#cardsMainWrap', {case: 'get_cards'});
 
-            post_request('./controllers/index_control.php','#total_tarjetas', {case: 'get_dashboard'}, function(data){
+            post_request('./controllers/index_control.php','', {case: 'get_dashboard'}, function(data){
 
-            });
+                data = JSON.parse(data);
 
-            $('#satest').click(function(){
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Do you want to continue',
-                    type: 'error',
-                    confirmButtonText: 'Cool'
-                });
+                $('#total_tarjetas').html(data.total_tarjetas);
+                $('#dentro_tarjetas').html(data.dentro_tarjetas);
+                $('#fuera_tarjetas').html(data.fuera_tarjetas);
+                $('#vencidas_tarjetas').html(data.vencidas_tarjetas);
             });
+        });
+
+        $('#search_cards').click(function(){
+
+            search_cards($('#searchbar').val(),'#cardsMainWrap')
+
         });
 
     </script>
