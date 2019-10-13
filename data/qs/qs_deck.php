@@ -1,7 +1,7 @@
 <?php
 
 
-class qs_deck{
+class qs_main{
 
     function get_cards(){
         return "SELECT * FROM tcards.cards";
