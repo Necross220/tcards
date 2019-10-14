@@ -15,7 +15,7 @@
         //GETS
         function get_cards($id = 0){
             $stm = $this->conn->prepare($this->deck->get_cards());
-            $stm->bindParam(":id", $id);
+            $stm->bindParam(":id", $id, PDO::PARAM_INT);
             $stm->execute();
             return $this->get_obj($stm);
         }

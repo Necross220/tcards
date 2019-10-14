@@ -4,6 +4,17 @@
     class qs_main{
 
         //GETS
+        function get_login(){
+            return "SELECT 
+                        * 
+                    FROM 
+                         usuarios usr 
+                         JOIN accounts acc ON usr.id = acc.usuario_id 
+                    WHERE 
+                          acc.email = :email AND
+                          acc.password = :password";
+        }
+
         function get_menu_items(){
             return "SELECT * FROM menu m WHERE m.active = 1 ORDER BY m.order ASC";
         }

@@ -9,7 +9,8 @@
     $utl = new utilities();
 
     //Declaración y validación de variables globales
-    $usuario_id = isset($_POST['$usuario_id']) ? (int)$_POST['$usuario_id'] : 0;
+    $usuario_id = isset($_POST['usuario_id']) ? (int)$_POST['usuario_id'] : 0;
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 
     //Case controller
     $case = isset($_POST['case']) ? (string)filter_var($_POST['case'], FILTER_SANITIZE_STRING)  : 'default';
@@ -18,7 +19,7 @@
 
         try{
             //conneccion a base de datos por las tarjetas
-            $cards = $deck->get_cards();
+            $cards = $deck->get_cards($id);
         }catch (Exception $ex){
             $utl->setMsg('danger', 'Error: ', 'Algo salió mal, es todo lo que sabemos', true, true);
             return;
@@ -26,7 +27,7 @@
 
         if(count($cards) > 0 ){
             echo  "
-                <table id='cardsMain' class='table table-striped text-center'>
+                <table id='cardsMain' class='table table-striped text-center' width='100%'>
                     <thead>
                         <tr>
                             <th hidden>id</th>
@@ -80,6 +81,8 @@
                         'pdf',
                         'print'
                     ],
+                    responsive: true,
+                    pageLength : 7,
                     'language': {
                         'url':'//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
                     }

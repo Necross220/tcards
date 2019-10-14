@@ -21,7 +21,7 @@ class qs_deck{
                  cards c
                  JOIN idiomas i ON c.idioma_id = i.id
             WHERE
-                (c.id = :id OR :id = 0)
+                (c.numero = :id OR :id = 0)
             ORDER BY C.fecha_salida DESC
         ";
     }

@@ -1,3 +1,16 @@
+<?php
+
+    //Header root for files
+    $_ROOT = $_SERVER['DOCUMENT_ROOT'];
+
+    //Dependencies
+    require_once "{$_ROOT}/data/data_connection.php";
+    require_once "{$_ROOT}/data/utilities.php";
+
+    //Decaracion de librerias?
+    $utl = new utilities();
+    $conn = new data_connection();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -36,6 +49,7 @@
     <script src="../../plugins/iCheck/icheck.min.js"></script>
     <link href="//gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="./js/app.js"></script>
 
 
     <style>
@@ -57,13 +71,12 @@
     <div class="login-box-body">
 
 
-        <form action="../../index2.html" method="post">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" id="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" id="password" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -77,17 +90,20 @@
                 <br>
                 <!-- /.col -->
                 <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
+                    <button id="logMeIn" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
                 </div>
                 <!-- /.col -->
             </div>
-        </form>.
+
         <br>
 
         <div class="text-center">
             <a href="#">Olvide mi contraseña</a><br>
-            <a href="register.html" class="text-center">Crear cuenta</a>
         </div>
+
+        <br>
+
+        <div id="loginMsg"></div>
 
     </div>
     <!-- /.login-box-body -->
@@ -102,6 +118,18 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' /* optional */
         });
+    });
+
+    $('#logMeIn').click(function(){
+
+        var obj = {
+            case: 'get_login',
+            email: $('#email').val(),
+            password: $('#password').val()
+        };
+
+       post_request('controllers/main_control.php', '#loginMsg', obj);
+
     });
 </script>
 </body>

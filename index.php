@@ -93,6 +93,8 @@
                 </div>
                 <!-- ./col -->
             </div>
+
+            <br>
             <!-- /.row -->
 
             <div class="input-group input-group-lg">
@@ -101,6 +103,8 @@
                       <button type="button" id="search_cards" class="btn btn-info btn-flat">Buscar</button>
                     </span>
             </div>
+
+            <br>
 
             <div id="cardsMainWrap"></div>
         </section>
@@ -126,7 +130,7 @@
 
         $('#search_cards').click(function(){
 
-            search_cards($('#searchbar').val(),'#cardsMainWrap')
+            search_cards($('#searchbar').val(), '#cardsMainWrap')
 
         });
 

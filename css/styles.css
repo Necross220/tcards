@@ -1,3 +1,8 @@
 .alert {
     border-radius: 0 !important;
 }
+
+#logo{
+    margin-top:10px;
+    margin-bottom: 10px;
+}

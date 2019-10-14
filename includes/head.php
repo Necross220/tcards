@@ -1,4 +1,5 @@
-<?php
+<?php session_start();
+
     //Header root for files
     $_ROOT = $_SERVER['DOCUMENT_ROOT'];
 
@@ -12,7 +13,17 @@
     $utl = new utilities();
     $conn = new data_connection();
     $main = new data_cards();
- ?>
+
+    if(isset($_SESSION['logged_in'])){
+        if($_SESSION['logged_in'] === false){
+            header('Location: ./login.php');
+        }
+    }else{
+        header('Location: ./login.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -83,12 +94,9 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="./" class="logo">
+        <a href="./" class="logo" style="display: none;">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <img src="src/images/temple-icon.png" width="50" height="50" alt="logo-mini" id="logo-mini" class="logo-mini">
-            <!-- logo for regular state and mobile devices -->
-            <img style="display: inline-block !important;" src="src/images/temple-icon.png" width="50" height="50" alt="logo-lg" id="logo" class="logo-lg">
-            <span class="logo-lg"><b>T</b>Cards
         </a>
 
         <!-- Header Navbar -->
@@ -135,8 +143,7 @@
                                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    [USERNAME AQUI]
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -158,6 +165,9 @@
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
+            <center>
+                <a href="./"><img style="display: block !important;" src="src/images/temple-icon.png" width="auto" height="92" alt="logo-lg" id="logo" class="logo-lg"></a>
+            </center>
             <!-- Menu -->
             <ul class="sidebar-menu" id="sidebar-menu" datax-widget="tree"></ul>
             <!-- /.enu -->
@@ -184,5 +194,10 @@
             $('#notifications_counts').html(data.total_warnings);
             $('#txtFuera').html(data.fuera_tarjetas);
             $('#txtVencidas').html(data.vencidas_tarjetas);
+        });
+
+        $('.sidebar-toggle').click(function(){
+            $('#logo').toggle();
+            $('.logo').toggle();
         });
     </script>
