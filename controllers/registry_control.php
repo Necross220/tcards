@@ -15,7 +15,7 @@
     //Case controller
     $case = isset($_POST['case']) ? (string)filter_var($_POST['case'], FILTER_SANITIZE_STRING)  : 'default';
 
-    if($case === 'get_cards'){
+    if($case === 'get_cards_crud'){
 
         try{
             //conneccion a base de datos por las tarjetas
@@ -82,7 +82,7 @@
                         'print'
                     ],
                     responsive: true,
-                    pageLength : 7,
+                    pageLength : 12,
                     'language': {
                         'url':'/js/spanish.json'
                     }
@@ -91,16 +91,6 @@
         }else{
             echo $utl->setMsg('info', 'Info: ', 'no se encontraron resgistros');
         }
-    }else if($case === 'get_dashboard'){
-        $cards_count = $deck->get_cards_count()[0];
-
-        if(count($cards_count) > 0){
-            echo json_encode($cards_count);
-        }else{
-            echo 0;
-        }
-    }
-
-    else if($case === 'default'){
+    }else if($case === 'default'){
         echo $utl->setMsg('info', 'Info: ', 'no se eligió un caso.', true, true);
     }

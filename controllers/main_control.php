@@ -43,7 +43,7 @@
             foreach ($menus as $menu){
                 echo "
                     <li class='menu-item'>
-                        <a href='{$menu['url']}'>
+                        <a href='/{$menu['url']}'>
                             <i class='{$menu['icon']}'></i>
                             <span>{$menu['name']}</span>
                         </a>

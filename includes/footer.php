@@ -92,7 +92,7 @@
     <script src="/js/bootstrap-toggle.min.js"></script>
 
     <!-- Sweet Alert 2  CDN-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="/js/sweetalert.min.js"></script>
 
 </body>
 </html>

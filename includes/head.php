@@ -2,6 +2,7 @@
 
     //Header root for files
     $_ROOT = $_SERVER['DOCUMENT_ROOT'];
+    $_NAME = $_SERVER['SERVER_NAME'];
 
     //Dependencies
     require_once "{$_ROOT}/data/data_connection.php";
@@ -33,7 +34,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!--Tittle-->
     <title>TCards</title>
-    <link rel="shortcut icon" href="src/images/temple-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/src/images/temple-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
@@ -43,30 +44,28 @@
     <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
     <!--blueskin-->
     <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
-
-
     <!-- CUstom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 3 -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- DataTable JS & CSS -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <!-- Bootstrap 3.3.7 -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
     <![endif]-->
 
     <!-- Google Font -->
@@ -74,18 +73,18 @@
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <!-- DataTable JS & CSS -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json" type="application/json"></script>
+    <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/buttons.print.min.js"></script>
+    <script src="/js/jszip.min.js"></script>
+    <script src="/js/pdfmake.min.js"></script>
+    <script src="/js/vfs_fonts.js"></script>
+    <script src="/js/buttons.html5.min.js"></script>
+    <script src="/js/spanish.json" type="application/json"></script>
 
     <!-- Custom Javascript-->
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -96,7 +95,7 @@
         <!-- Logo -->
         <a href="./" class="logo" style="display: none;">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <img src="src/images/temple-icon.png" width="50" height="50" alt="logo-mini" id="logo-mini" class="logo-mini">
+            <img src="/src/images/temple-icon.png" width="50" height="50" alt="logo-mini" id="logo-mini" class="logo-mini">
         </a>
 
         <!-- Header Navbar -->
@@ -133,14 +132,14 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{OBED URI}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
                                     [USERNAME AQUI]
@@ -166,7 +165,7 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <center>
-                <a href="./"><img style="display: block !important;" src="src/images/temple-icon.png" width="auto" height="92" alt="logo-lg" id="logo" class="logo-lg"></a>
+                <a href="./"><img style="display: block !important;" src="/src/images/temple-icon.png" width="auto" height="92" alt="logo-lg" id="logo" class="logo-lg"></a>
             </center>
             <!-- Menu -->
             <ul class="sidebar-menu" id="sidebar-menu" datax-widget="tree"></ul>
