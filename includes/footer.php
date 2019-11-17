@@ -2,7 +2,7 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            {OBEDRUI2220}
+            <?= ucfirst($_SESSION['username']) ?>
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; <?=date('Y') ?> <a href="#">Obed David Pérez Uri </a>.</strong> All rights reserved.

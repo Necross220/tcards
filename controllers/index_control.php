@@ -99,6 +99,8 @@
         }else{
             echo 0;
         }
+    }else if($case === 'log_out'){
+        session_destroy();
     }
 
     else if($case === 'default'){

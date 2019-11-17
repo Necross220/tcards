@@ -13,6 +13,7 @@ class qs_deck{
                 i.nombre as idioma,
                 i.id as idioma_id,
                 c.folder_id,
+                c.holder,
                 c.state,
                 c.fecha_salida,
                 c.fecha_entrada,
@@ -36,7 +37,16 @@ class qs_deck{
                     tcards.cards c";
     }
 
+    function get_cards_folders(){
+        return "SELECT * FROM folders WHERE activo = 1";
+    }
+
     //INSERTS
+
+
+    function new_cards(){
+        return "INSERT INTO cards (name,numero,folder,holder, state,creator,creation,active) VALUES (:name,:numero,:folder,:holder, :state, :creator,:creation, :active) WHERE id = :id";
+    }
 
     //UPDATES
 

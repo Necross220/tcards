@@ -25,7 +25,29 @@
             $stm->execute();
             return $this->get_obj($stm);
         }
+
+        function get_cards_folders($id = 0){
+            $stm = $this->conn->prepare($this->deck->get_cards_folders());
+            $stm->bindParam(":id", $id, PDO::PARAM_INT);
+            $stm->execute();
+            return $this->get_obj($stm);
+        }
+
         //INSERTS
+        function new_cards($id,$name,$numero,$folder,$holder, $state, $creator,$creation, $active){
+            $stm = $this->conn->prepare($this->deck->new_cards());
+            $stm->bindParam(":id", $id, PDO::PARAM_INT);
+            $stm->bindParam(":name", $name, PDO::PARAM_INT);
+            $stm->bindParam(":numero", $numero, PDO::PARAM_INT);
+            $stm->bindParam(":folder", $folder, PDO::PARAM_INT);
+            $stm->bindParam(":holder", $holder, PDO::PARAM_INT);
+            $stm->bindParam(":state", $state, PDO::PARAM_INT);
+            $stm->bindParam(":creator", $creator, PDO::PARAM_STR);
+            $stm->bindParam(":creation", $creation, PDO::PARAM_STR);
+            $stm->bindParam(":active", $active, PDO::PARAM_INT);
+            $stm->execute();
+            return $this->get_obj($stm);
+        }
 
         //UPDATES
 

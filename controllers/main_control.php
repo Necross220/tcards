@@ -23,9 +23,11 @@
             $user = $main->get_login($email, $password);
 
             if(count($user) > 0){
+                ob_start();
+                session_start();
                 $_SESSION['username'] = $user[0]['username'];
                 $_SESSION['logged_in'] = true;
-                echo "<script>window.location = 'index.php'</script>";
+                echo "<script>window.location.assign('./index.php')</script>";
             }else{
                 $_SESSION['logged_in'] = false;
                 echo $utl->setMsg('warning', 'Advertencia: ', 'al combinación usuario y contraseña no coincide con nada en nuestros registros.');
@@ -74,6 +76,16 @@
             echo '<li>No tienes Tarjetas Fuera</li>';
         }
     }
+
+    //Session destroy
+    else if($case === 'log_out'){
+        session_start();
+        unset($_SESSION["username"]);
+        unset($_SESSION["password"]);
+        session_destroy();
+        echo "<script>window.location.assign('./index.php')</script>";
+    }
+
     //Safe in case that a case is not sent
     else if($case === 'default'){
         echo $utl->setMsg('info', 'Info: ', 'no se eligió un caso.', true, true);

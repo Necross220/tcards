@@ -1,4 +1,4 @@
-<?php session_start();
+<?php ob_start(); session_start();
 
     //Header root for files
     $_ROOT = $_SERVER['DOCUMENT_ROOT'];
@@ -52,8 +52,8 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- DataTable JS & CSS -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/jquery.dataTables.min.js"></script>
 
     <!-- Bootstrap 3.3.7 -->
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -93,7 +93,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="./" class="logo" style="display: none;">
+        <a href="/index.php" class="logo" style="display: none;">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <img src="/src/images/temple-icon.png" width="50" height="50" alt="logo-mini" id="logo-mini" class="logo-mini">
         </a>
@@ -134,23 +134,22 @@
                             <!-- The user image in the navbar-->
                             <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{OBED URI}</span>
+                            <span class="hidden-xs"><?= ucfirst($_SESSION['username']) ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
                                 <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                                 <p>
-                                    [USERNAME AQUI]
+                                    <?= ucfirst($_SESSION['username']) ?>
                                 </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
                                 <div class="row text-center">
-                                    <button type="button" class="btn btn-default">Perfil</button>
-                                    <button type="button" class="btn btn-default">Configurar</button>
-                                    <button type="button" class="btn bg-maroon">Salir</button>
+                                    <button type="button" class="btn btn-default">Perfil <i class="fa fa-fw fa-user"></i></button>
+                                    <button type="button" class="btn btn-default">Configurar <i class="fa fa-fw fa-cog"></i></button>
+                                    <button type="button" class="btn bg-maroon" onclick="log_out()">Salir <i class="fa fa-fw fa-sign-out"></i></button>
                                 </div>
                                 <!-- /.row -->
                             </li>
@@ -160,6 +159,9 @@
             </div>
         </nav>
     </header>
+<!--    <div id="messenger" class="text-center media-middle">-->
+
+    </div>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->

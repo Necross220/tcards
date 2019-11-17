@@ -99,7 +99,7 @@
             <div class="input-group input-group-lg">
                 <input id="searchbar" type="number" class="form-control">
                 <span class="input-group-btn">
-                      <button type="button" id="search_cards" class="btn btn-info btn-flat">Buscar</button>
+                      <button type="button" id="search_cards" class="btn btn-info btn-flat"><i class="fa fa-search"></i> Buscar</button>
                     </span>
             </div>
 

@@ -6,3 +6,39 @@
     margin-top:10px;
     margin-bottom: 10px;
 }
+
+/*Toggle style for checkbox Android*/
+.toggle.android { border-radius: 0px;}
+.toggle.android .toggle-handle { border-radius: 0px; }
+
+.modal-title {
+    display: inline-block !important;
+    font-width: bold !important;
+}
+
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    height: 110%;
+}
+
+/*.content{*/
+/*    margin-bottom: 64px !important;*/
+/*}*/
+
+/*.main-footer {*/
+/*    width: 100% !important;*/
+/*    position: fixed !important;*/
+/*    bottom: 0 !important;*/
+/*    text-align: center !important;*/
+/*}*/
+
+/*#messenger {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    width: 30%;*/
+/*    height: 128px;*/
+/*    top: 60px;*/
+/*    right: 10px;*/
+/*    z-index: 999;*/
+/*    padding: 10px;*/
+/*}*/
