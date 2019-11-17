@@ -39,15 +39,15 @@
     <script>
 
         //Declaaaracion de variables globales
-        let $cards_wrap = $('#cardsMainWrap');
-        let $cards_number = $('#card_number').val();
-        let $cards_name = $('#card_name').val();
-        let $cards_folder = $('#card_folder').val();
-        let $cards_holder = $('#card_holder').val();
-        let $cards_state = $('#card_state').is('checked') === true ? 1 : 0;
-        let $cards_creator = $('#card_creator').val();
-        let $cards_creation = $('#card_creation').val();
-        let $cards_active = $('#card_activo').is('checked')  === true ? 1 : 0;
+        var $cards_wrap = $('#cardsMainWrap');
+        var $cards_number = $('#card_number').val();
+        var $cards_name = $('#card_name').val();
+        var $cards_folder = $('#card_folder').val();
+        var $cards_holder = $('#card_holder').val();
+        var $cards_state = $('#card_state').is('checked') === true ? 1 : 0;
+        var $cards_creator = $('#card_creator').val();
+        var $cards_creation = $('#card_creation').val();
+        var $cards_active = $('#card_activo').is('checked')  === true ? 1 : 0;
 
         $(document).ready(function(){
             get_cards();
@@ -81,24 +81,16 @@
         }
 
         function new_cards($cards_number,$cards_name,$cards_folder,$cards_holder,$cards_state,$cards_creator,$cards_creation,$cards_active){
-
-            //Clean all the inputs
-            $('card_number').html('');
-            $('card_name').html('');
-            $('card_folder').html('');
-            $('card_holder').html('');
-            $('card_creator').html('');
-            $('card_creation').html('');
-
+            //The value function is given on
             var obj = {
                 case: 'new_cards',
-                number: $cards_number.val(),
-                name: $cards_name.val(),
-                folder: $cards_folder.val(),
-                holder: $cards_holder.val(),
+                number: $cards_number,
+                name: $cards_name,
+                folder: $cards_folder,
+                holder: $cards_holder,
                 state: $cards_state,
-                creator: $cards_creator.val(),
-                creation: $cards_creation.val(),
+                creator: $cards_creator,
+                creation: $cards_creation,
                 active: $cards_active,
             };
 
