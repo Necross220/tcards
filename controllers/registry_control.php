@@ -10,24 +10,25 @@
 
     //Declaración y validación de variables globales
     $id         = isset($_POST['id'])           ? (int)$_POST['id'] : 0;
-    $name       = isset($_POST['name'])         ? (int)$_POST['name'] : 0;
-    $state      = isset($_POST['state'])        ? (int)$_POST['state'] : 0;
-    $numero     = isset($_POST['number'])       ? (int)$_POST['number'] : 0;
-    $activo     = isset($_POST['active'])       ? (int)$_POST['active'] : 0;
+    $name       = isset($_POST['name'])         ? (string)filter_var($_POST['name'], FILTER_SANITIZE_STRING) : '';
+    $lang_id    = isset($_POST['lang_id'])      ? (int)$_POST['lang_id'] : 0;
+    $state      = isset($_POST['state'])        ? (int)$_POST['state']  : 0;
+    $number     = isset($_POST['number'])       ? (int)$_POST['number'] : 0;
+    $active     = isset($_POST['active'])       ? (int)$_POST['active'] : 0;
     $folder     = isset($_POST['folder'])       ? (int)$_POST['folder'] : 0;
-    $holder     = isset($_POST['holder'])       ? (int)$_POST['holder'] : 0;
-    $creator    = isset($_POST['creator'])      ? (int)$_POST['creator'] : 0;
-    $creation   = isset($_POST['creation'])     ? (int)$_POST['creation'] : 0;
-    $usuario_id = isset($_POST['usuario_id'])   ? (int)$_POST['usuario_id'] : 0;
+    $holder     = isset($_POST['holder'])       ? (string)filter_var($_POST['holder'], FILTER_SANITIZE_STRING) : '';
+    $creator    = isset($_POST['creator'])      ? (string)filter_var($_POST['creator'], FILTER_SANITIZE_STRING) : '';
+    $creation   = isset($_POST['creation'])     ? (string)filter_var($_POST['creation'], FILTER_SANITIZE_STRING) : '';
+    $user_id    = isset($_POST['user_id'])   ? (int)$_POST['user_id'] : 0;
 
-//Case controller
+    //Case controller
     $case = isset($_POST['case']) ? (string)filter_var($_POST['case'], FILTER_SANITIZE_STRING)  : 'default';
 
     if($case === 'get_cards_crud'){
 
         try{
             //conneccion a base de datos por las tarjetas
-            $cards = $deck->get_cards($id);
+            $cards = $deck->get_cards($number);
         }catch (Exception $ex){
             $utl->setMsg('danger', 'Error: ', 'Algo salió mal, es todo lo que sabemos', true, true);
             return;
@@ -47,7 +48,7 @@
                             <th>Estado</th>
                             <th>Fecha Salida</th>
                             <th>Fecha Entrada</th>
-                            <th>Activo</th>
+                            <th>active</th>
                         </tr>
                     </thead>
             ";
@@ -66,14 +67,14 @@
                 echo "
                     <tr>
                         <td hidden>{$card['card_id']}</td>
-                        <td>{$card['numero']}</td>
-                        <td>{$card['card_name']}</td>
+                        <td>{$card['number']}</td>
+                        <td>{$card['name']}</td>
                         <td>{$card['folder_id']}</td>
                         <td>{$card['holder']}</td>
-                        <td>{$card['idioma']}</td>
+                        <td>{$card['lang']}</td>
                         <td>{$state}</td>
-                        <td>{$card['fecha_salida']}</td>
-                        <td>{$card['fecha_entrada']}</td>
+                        <td>{$card['time_out']}</td>
+                        <td>{$card['time_in']}</td>
                         <td>$active</td>
                     </tr>
                 ";
@@ -112,9 +113,9 @@
             echo "<option value=0>Todos</option>";
             foreach($folders as $folder){
                 if((int)$folder['id'] === $id){
-                    echo "<option value={$folder['id']} selected>{$folder['nombre']}</option>";
+                    echo "<option value={$folder['id']} selected>{$folder['name']}</option>";
                 }else{
-                    echo "<option value={$folder['id']}>({$folder['id']}) - {$folder['nombre']}</option>";
+                    echo "<option value={$folder['id']}>({$folder['id']}) - {$folder['name']}</option>";
                 }
             }
         }else{
@@ -125,12 +126,16 @@
     else if($case === 'new_cards'){
 
         try{
-            $deck->new_cards($id,$name,$numero,$folder,$holder, $state,$creator,$creation, $activo);
-            echo $utl->setMsg('success', 'Exito: ', 'se ha creado la nueva tarjeta');
+            $deck->new_cards($name,$number,$lang_id,$folder,$holder, $state,$creator,$creation, $active);
+            echo $utl->setMsg('success', 'Exito: ', 'se ha creado la nueva tarjeta.');
         }catch (Exception $ex){
-            echo $utl->setMsg('danger', 'Error: ', 'no se puedo crear la nueva tarjeta');
-            //$utl->setMsg('danger', 'Error: ', substr($ex->getMessage(), 40));
-            return;
+            if($ex->getCode() === '23000'){
+                echo $utl->setMsg('danger', 'Error: ', 'number de tarjeta duplicado.');
+                return;
+            }else{
+                echo $utl->setMsg('danger', 'Error: ', 'no se puedo crear la nueva tarjeta.');
+                return;
+            }
         }
 
     }else if($case === 'default'){

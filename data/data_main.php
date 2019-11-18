@@ -21,6 +21,13 @@
             return $this->get_obj($stm);
         }
 
+        function get_langs($lang_id = 0){
+            $stm = $this->conn->prepare($this->main->get_langs());
+            $stm->bindParam(':lang_id', $lang_id, PDO::PARAM_INT);
+            $stm->execute();
+            return $this->get_obj($stm);
+        }
+
         function get_menu_items(){
             $stm = $this->conn->prepare($this->main->get_menu_items());
             $stm->execute();

@@ -193,8 +193,8 @@
         post_request('controllers/main_control.php', '', {case: 'get_notifications'}, function(data){
             data = JSON.parse(data);
             $('#notifications_counts').html(data.total_warnings);
-            $('#txtFuera').html(data.fuera_tarjetas);
-            $('#txtVencidas').html(data.vencidas_tarjetas);
+            $('#txtFuera').html(data.cards_out);
+            $('#txtVencidas').html(data.cards_due);
         });
 
         $('.sidebar-toggle').click(function(){

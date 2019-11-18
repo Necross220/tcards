@@ -9,8 +9,9 @@
     $utl = new utilities();
 
     //Declaración y validación de variables globales
-    $usuario_id = isset($_POST['usuario_id']) ? (int)$_POST['usuario_id'] : 0;
-    $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+    $id         = isset($_POST['id'])       ? (int)$_POST['id'] : 0;
+    $user_id    = isset($_POST['user_id'])  ? (int)$_POST['user_id'] : 0;
+    $number     = isset($_POST['number'])   ? (int)$_POST['number'] : 0;
 
     //Case controller
     $case = isset($_POST['case']) ? (string)filter_var($_POST['case'], FILTER_SANITIZE_STRING)  : 'default';
@@ -19,7 +20,7 @@
 
         try{
             //conneccion a base de datos por las tarjetas
-            $cards = $deck->get_cards($id);
+            $cards = $deck->get_cards($number);
         }catch (Exception $ex){
             $utl->setMsg('danger', 'Error: ', 'Algo salió mal, es todo lo que sabemos', true, true);
             return;
@@ -57,13 +58,13 @@
                 echo "
                     <tr>
                         <td hidden>{$card['card_id']}</td>
-                        <td>{$card['numero']}</td>
-                        <td>{$card['card_name']}</td>
+                        <td>{$card['number']}</td>
+                        <td>{$card['name']}</td>
                         <td>{$card['folder_id']}</td>
-                        <td>{$card['idioma']}</td>
+                        <td>{$card['lang']}</td>
                         <td>{$state}</td>
-                        <td>{$card['fecha_salida']}</td>
-                        <td>{$card['fecha_entrada']}</td>
+                        <td>{$card['time_out']}</td>
+                        <td>{$card['time_in']}</td>
                         <td>$active</td>
                     </tr>
                 ";

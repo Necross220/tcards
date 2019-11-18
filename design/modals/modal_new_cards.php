@@ -29,7 +29,7 @@
                             <label for="card_holder">Poseedor:</label>
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" disabled>
                                         <span class="fa fa-user"></span>
                                     </button>
                                 </div>
@@ -40,7 +40,7 @@
                             <label for="card_creator">Creador:</label>
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" disabled>
                                         <span class="fa fa-user"></span>
                                     </button>
                                 </div>
@@ -52,9 +52,19 @@
                             <input type="date" name="card_creation" value="<?= date('Y-m-d'); ?>" id="card_creation" class="form-control">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="langs">Lenguaje:</label>
+                            <select name="langs" id="langs" class="form-control"></select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="msg_new_cards"></div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="msg_new_cards"></div>
+                </div>
+            </div>
             <div class="modal-footer">
                 <div class="pull-left text-left">
                     <input type="checkbox" data-toggle="toggle" data-width="75" data-size="small" data-offstyle="warning" data-on="Dentro" data-off="Fuera"  name="card_state" id="card_state" class="form-control" checked>
