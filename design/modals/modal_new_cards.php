@@ -55,14 +55,14 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label for="langs">Lenguaje:</label>
-                            <select name="langs" id="langs" class="form-control"></select>
+                            <select name="card_lang" id="card_lang" class="form-control"></select>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="msg_new_cards"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="msg_new_cards"></div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -70,8 +70,8 @@
                     <input type="checkbox" data-toggle="toggle" data-width="75" data-size="small" data-offstyle="warning" data-on="Dentro" data-off="Fuera"  name="card_state" id="card_state" class="form-control" checked>
                     <input type="checkbox" data-toggle="toggle" data-width="75" data-size="small" data-on="Activo" data-off="Inactivo" name="card_activo" id="card_activo" class="form-control" checked>
                 </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa   fa-chevron-left"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" id="btn_save_card"><i class="fa fa-save"></i> Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-chevron-left"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btn_save_card" data-dismiss="modal"><i class="fa fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>

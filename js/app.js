@@ -1,3 +1,4 @@
+//Submits the resquest
 function post_request(urlFile, comp, arrayData, Callback, not_load = true, loading = '#messenger', is_select = false){
 
     $.ajax({
@@ -41,6 +42,7 @@ function post_request(urlFile, comp, arrayData, Callback, not_load = true, loadi
     });
 }
 
+//Gets all the cards
 function search_cards(id, comp){
     let obj = {
         case: 'get_cards',
@@ -55,10 +57,12 @@ function alarm_check(){
 
 }
 
+//Logs the users
 function log_out(){
     post_request('controllers/main_control.php', 'body', {case: 'log_out'});
 }
 
+//Gets all the cards
 function get_cards(){
     var obj = {
         case: 'get_cards_crud'
@@ -66,6 +70,7 @@ function get_cards(){
     post_request('controllers/registry_control.php','#cardsMainWrap', obj,'',true, '#messenger');
 }
 
+//Gets all the folders
 function get_folders(cards_folder = 0){
     var obj = {
         case: 'get_folders',
@@ -74,6 +79,7 @@ function get_folders(cards_folder = 0){
     post_request('controllers/registry_control.php','#card_folder', obj,'',true, '#messenger');
 }
 
+//Gets all the langs
 function get_langs(lang_id = 0, comp){
 
     obj = {
@@ -84,7 +90,8 @@ function get_langs(lang_id = 0, comp){
     post_request('controllers/main_control.php', comp, obj, '', true, '#messenger', true);
 }
 
-function new_cards(cards_number,cards_name,cards_folder,cards_holder,cards_state,cards_creator,cards_creation,cards_active, comp = '#msg_new_cards'){
+//Getss all the cards
+function new_cards(cards_number,cards_name,card_lang,cards_folder,cards_holder,cards_state,cards_creator,cards_creation,cards_active, comp = '#msg_new_cards'){
     //The value function is given on
     var obj = {
         case: 'new_cards',

@@ -16,29 +16,14 @@
     font-width: bold !important;
 }
 
-
-.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
-    height: 110%;
+table.dataTable tbody th, table.dataTable tbody td  {
+    vertical-align: middle;
 }
 
-/*.content{*/
-/*    margin-bottom: 64px !important;*/
-/*}*/
+main-footer {
+    text-align: center;
+}
 
-/*.main-footer {*/
-/*    width: 100% !important;*/
-/*    position: fixed !important;*/
-/*    bottom: 0 !important;*/
-/*    text-align: center !important;*/
-/*}*/
-
-/*#messenger {*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    width: 30%;*/
-/*    height: 128px;*/
-/*    top: 60px;*/
-/*    right: 10px;*/
-/*    z-index: 999;*/
-/*    padding: 10px;*/
-/*}*/
+#cardsMain_filter{
+    display: none !important;
+}

@@ -46,7 +46,6 @@
             $stm->bindParam(":creation", $creation, PDO::PARAM_STR);
             $stm->bindParam(":active", $active, PDO::PARAM_INT);
             $stm->execute();
-            return $this->get_obj($stm);
         }
 
         //UPDATES

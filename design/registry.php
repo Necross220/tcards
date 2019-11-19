@@ -20,17 +20,6 @@
 
         <!-- Main content -->
         <section class="content container-fluid">
-
-            <div class="input-group input-group-lg">
-                <input id="searchbar" type="number" class="form-control">
-                <span class="input-group-btn">
-                      <button type="button" id="new_cards" class="btn btn-info btn-flat bg-teal-active" data-toggle="modal" data-target="#newcards"><i class="fa fa-plus"></i> Nueva</button>
-                      <button type="button" id="search_cards" class="btn btn-info btn-flat"><i class="fa fa-search"></i> Buscar</button>
-                    </span>
-            </div>
-
-            <br>
-
             <div id="cardsMainWrap"></div>
         </section>
         <!-- /.content -->
@@ -41,7 +30,7 @@
         $(document).ready(function(){
             get_cards();
             get_folders(0);
-            get_langs(0, $('#langs'));
+            get_langs(0, $('#card_lang'));
         });
 
         $('#search_cards').click(() => {
@@ -49,17 +38,51 @@
         });
 
 
-        $(document).find('#btn_save_card').on('click', function () {
+        $(document).on('click', '#btn_save_card', () => {
 
             new_cards(
                 $('#card_number').val(),
                 $('#card_name').val(),
-                $('#card_folder').val(),
+                $('#card_lang option:selected').val(),
+                $('#card_folder option:selected').val(),
                 $('#card_holder').val(),
-                $('#card_state').is('checked') === true ? 1 : 0,
+                $('#card_state').is(':checked') === true ? 1 : 0,
                 $('#card_creator').val(),
                 $('#card_creation').val(),
-                $('#card_activo').is('checked')  === true ? 1 : 0)
+                $('#card_activo').is(':checked')  === true ? 1 : 0)
+        });
+
+        $(document).on('click', '[name=card_edit]', () => {
+            $('#newcards').modal('toggle');
+        });
+
+        $(document).on('click', '[name=card_remove]', () => {
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: "Si borra la tarjeta se perderá por siempre.",
+                imageUrl: '../src/images/remove-alert.png',
+                imageWidth: 92,
+                imageHeight: 92,
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Si, Borrar'
+            }).then((result) => {
+                if (result.value) {
+                    let obj = {
+                        case: 'remove_card',
+                        id: $(this).closest('tr').find()
+                    };
+
+                    post_request('controllers/registry_control.php', '', obj);
+
+                    Swal.fire(
+                        'Listo',
+                        'La tajeta ha sido eliminada',
+                        'success'
+                    );
+                }
+            })
         });
 
     </script>

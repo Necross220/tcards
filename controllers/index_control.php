@@ -27,6 +27,18 @@
         }
 
         if(count($cards) > 0 ){
+
+            echo "
+                <div class='input-group input-group-lg'>
+                    <input id='searchbar' type='text' class='form-control' autofocus>
+                    <span class='input-group-btn'>
+                          <button type='button' id='search_cards' class='btn btn-info btn-flat' data-toggle='tooltip' data-placement='top' title='Tooltip on top'><i class='fa fa-search'></i> Buscar</button>
+                    </span>
+                </div>
+        
+                <br>
+            ";
+
             echo  "
                 <table id='cardsMain' class='table table-striped text-center' width='100%'>
                     <thead>
@@ -73,8 +85,8 @@
             echo "</table>";
 
             echo "<script>
-                $('#cardsMain').DataTable({
-                    dom: 'Bfrtip',
+                var DTable = $('#cardsMain').DataTable({
+                    dom: 'frtip',
                     buttons: [
                         'copy',
                         'excel',
@@ -87,6 +99,10 @@
                     'language': {
                         'url':'/js/spanish.json'
                     }
+                });
+                
+                $('#searchbar').keyup(function() {
+                    DTable.search($(this).val()).draw();
                 });
             </script>";
         }else{

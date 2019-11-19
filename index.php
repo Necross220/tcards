@@ -96,15 +96,6 @@
             <br>
             <!-- /.row -->
 
-            <div class="input-group input-group-lg">
-                <input id="searchbar" type="number" class="form-control">
-                <span class="input-group-btn">
-                      <button type="button" id="search_cards" class="btn btn-info btn-flat"><i class="fa fa-search"></i> Buscar</button>
-                    </span>
-            </div>
-
-            <br>
-
             <div id="cardsMainWrap"></div>
         </section>
         <!-- /.content -->
@@ -125,12 +116,6 @@
                 $('#fuera_tarjetas').html(data.fuera_tarjetas);
                 $('#vencidas_tarjetas').html(data.vencidas_tarjetas);
             });
-        });
-
-        $('#search_cards').click(function(){
-
-            search_cards($('#searchbar').val(), '#cardsMainWrap')
-
         });
 
     </script>

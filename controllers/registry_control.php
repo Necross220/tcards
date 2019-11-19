@@ -35,6 +35,18 @@
         }
 
         if(count($cards) > 0 ){
+
+            echo "
+                <div class='input-group input-group-lg'>
+                    <input id='searchbar' type='tetx' class='form-control' autofocus>
+                    <span class='input-group-btn'>
+                          <button type='button' id='new_cards' class='btn btn-info btn-flat bg-teal-active' data-toggle='modal' data-target='#newcards'><i class='fa fa-plus'></i> Nueva</button>
+                          <button type='button' id='search_cards' class='btn btn-info btn-flat'><i class='fa fa-search'></i> Buscar</button>
+                        </span>
+                </div>
+    
+                <br>
+            ";
             echo  "
                 <table id='cardsMain' class='table table-striped text-center' width='100%'>
                     <thead>
@@ -48,6 +60,7 @@
                             <th>Estado</th>
                             <th>Fecha Salida</th>
                             <th>Fecha Entrada</th>
+                            <th>Acciones</th>
                             <th>active</th>
                         </tr>
                     </thead>
@@ -60,13 +73,13 @@
                     : "<span class='badge bg-red text-center' data-state='{$card['state']}'>Fuera</span>";
 
                 $active = $card['c_active'] == 1
-                    ? "<span class='badge bg-green'>SI</span>"
-                    : "<span class='badge bg-red'>NO</span>";
+                    ? "<td>SI</td>"
+                    : "<td>NO <i class='fa fa-warning' style='color:#F39A1F;'></i></td>";
 
 
                 echo "
                     <tr>
-                        <td hidden>{$card['card_id']}</td>
+                        <td hidden name='{$card['card_id']}'>{$card['card_id']}</td>
                         <td>{$card['number']}</td>
                         <td>{$card['name']}</td>
                         <td>{$card['folder_id']}</td>
@@ -75,7 +88,13 @@
                         <td>{$state}</td>
                         <td>{$card['time_out']}</td>
                         <td>{$card['time_in']}</td>
-                        <td>$active</td>
+                        <td>
+                            <div class='btn-group'>
+                              <button type='button' class='btn btn-info btn-flat' name='card_edit'><i class='fa fa-edit'></i></button>
+                              <button type='button' class='btn bg-maroon btn-flat' name='card_remove'><i class='fa fa-remove'></i></button>
+                            </div>		
+                        </td>
+                        {$active}
                     </tr>
                 ";
             }
@@ -83,20 +102,18 @@
             echo "</table>";
 
             echo "<script>
-                $('#cardsMain').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy',
-                        'excel',
-                        'csv',
-                        'pdf',
-                        'print'
-                    ],
+                var DTable = $('#cardsMain').DataTable({
+                    dom: 'frtip',
+                    buttons: 'none',
                     responsive: true,
                     pageLength : 12,
                     'language': {
                         'url':'/js/spanish.json'
                     }
+                });
+            
+                $('#searchbar').keyup(function() {
+                    DTable.search($(this).val()).draw();
                 });
             </script>";
         }
@@ -130,7 +147,7 @@
             echo $utl->setMsg('success', 'Exito: ', 'se ha creado la nueva tarjeta.');
         }catch (Exception $ex){
             if($ex->getCode() === '23000'){
-                echo $utl->setMsg('danger', 'Error: ', 'number de tarjeta duplicado.');
+                echo $utl->setMsg('danger', 'Error: ', 'número de tarjeta duplicado.');
                 return;
             }else{
                 echo $utl->setMsg('danger', 'Error: ', 'no se puedo crear la nueva tarjeta.');
@@ -138,6 +155,12 @@
             }
         }
 
-    }else if($case === 'default'){
+    }
+
+    else if($case === 'remove_card'){
+
+    }
+
+    else if($case === 'default'){
         echo $utl->setMsg('info', 'Info: ', 'no se eligió un caso.', true, true);
     }

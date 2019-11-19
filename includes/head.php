@@ -82,9 +82,20 @@
     <script src="/js/vfs_fonts.js"></script>
     <script src="/js/buttons.html5.min.js"></script>
     <script src="/js/spanish.json" type="application/json"></script>
+    <script src="/js/buttons.bootstrap.min.js"></script>
+    <script src="/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- Popper JS-->
+    <script src="/js/popper.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="/js/sweetalert2@9.js"></script>
 
     <!-- Custom Javascript-->
     <script src="/js/app.js"></script>
+
+    <!--Testing grounds-->
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
